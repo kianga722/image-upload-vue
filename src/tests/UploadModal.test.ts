@@ -5,6 +5,7 @@ import UploadModal from "../components/UploadModal.vue";
 import { vi } from 'vitest'
 import { render, waitFor, screen } from '@testing-library/vue'
 import userEvent from '@testing-library/user-event';
+import { setActivePinia, createPinia } from 'pinia'
 
 import { server } from '../mocks/server.js'
 
@@ -35,6 +36,8 @@ describe("Testing Upload", () => {
 
   beforeEach(
     () => {
+      setActivePinia(createPinia())
+      
       // @ts-ignore
       global.URL.createObjectURL = vi.fn(),
 

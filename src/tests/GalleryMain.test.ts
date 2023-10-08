@@ -4,6 +4,7 @@ import { MAX_THUMBNAIL_KEYS } from '../utils/CONSTANTS'
 // Using @testing-library/vue instead of @vue/test-utils as the Mounting Library because test-utils returns a Wrapper which makes the IntersectionObserverMock not behave correctly (intersection) because it sets an HTMLElement instead in the observerMap
 import { render, waitFor, screen, fireEvent } from '@testing-library/vue'
 import { vi } from 'vitest'
+import { setActivePinia, createPinia } from 'pinia'
 
 import GalleryMain from '../components/GalleryMain.vue'
 import ImageModal from '../components/ImageModal.vue'
@@ -41,6 +42,8 @@ describe('Testing Gallery', () => {
   // }
 
   beforeEach(() => {
+    setActivePinia(createPinia())
+
     const IntersectionObserverMock = vi.fn((cb, options = {}) => {
       const instance = {
         thresholds: Array.isArray(options.threshold)

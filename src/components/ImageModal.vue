@@ -1,25 +1,29 @@
 <script setup lang="ts">
   import.meta.env.VITE_BUCKET_URL_THUMBNAILS
-  import { store } from '../store/store'
+  import { storeToRefs } from 'pinia'
+  import { useGalleryStore } from '../store/galleryStore'
 
   const VITE_BUCKET_URL_IMAGES = import.meta.env.VITE_BUCKET_URL_IMAGES
+  const galleryStore = useGalleryStore()
+  const { selectedImage } = storeToRefs(galleryStore)
+  const { handleImageReset } = galleryStore
 </script>
 
 <template>
   <article
-    v-if="store.selectedImage"
-    @click="store.handleImageReset"
+    v-if="selectedImage"
+    @click="handleImageReset"
   >
     <dialog>
       <button
-        @click="store.handleImageReset"
+        @click="handleImageReset"
       >&times;</button>
 
       <picture>
         <img
           data-testid='dialog-img'
           @click.stop
-          :src="VITE_BUCKET_URL_IMAGES + store.selectedImage"  
+          :src="VITE_BUCKET_URL_IMAGES + selectedImage"  
         />
       </picture>
     </dialog>

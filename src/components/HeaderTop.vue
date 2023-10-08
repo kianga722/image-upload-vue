@@ -1,15 +1,18 @@
 <script setup lang="ts">
-  import { store } from '../store/store'
+  import { useUploadStore } from '../store/uploadStore'
   import { APP_TITLE } from '../utils/CONSTANTS'
+
+  const uploadStore = useUploadStore()
+  const { handleModalOpen } = uploadStore
 </script>
 
 <template>
   <header>
     <h1>{{APP_TITLE}}</h1>
 
-      <button 
-        @click="store.handleModalOpen"
-      >Upload</button>
+    <button 
+      @click="handleModalOpen"
+    >Upload</button>
   </header>
 </template>
 
