@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.app.json",
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist",
+    "lib": [],
+    "types": ["node", "jsdom", "vitest/globals", ],
+    "allowJs": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+  }
+}
